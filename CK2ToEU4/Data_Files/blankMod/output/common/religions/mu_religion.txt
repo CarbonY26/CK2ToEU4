@@ -1,0 +1,944 @@
+# If you add religions, and use those tags, do not change them without changing everywhere they are used.
+
+# Uses all 'modifiers' possible thats exported as a Modifier.
+
+atlantic = {
+	defender_of_faith = yes
+	can_form_personal_unions = yes
+	
+	center_of_religion = 9842
+
+	missionism = {
+		icon = 29
+		allowed_conversion = {
+			terran
+			ardent
+			ascendant
+		}
+		color = { 101 178 237 }
+		country = {
+			global_unrest = -1
+			tolerance_own = 1
+		}
+		country_as_secondary = {
+			stability_cost_modifier = -0.1
+			tolerance_own = 2
+		}
+		province = {
+			local_missionary_strength = -0.01
+		}
+		hre_religion = yes
+		authority = yes
+		religious_reforms = yes
+		reform_tooltip = INTI_REFORM_TOOLTIP
+		
+		heretic = { OLD_EARTH }
+
+		on_convert = {
+			change_religion = missionism
+			swap_free_idea_group = yes
+		}
+	}
+
+
+	terran = {
+		color = { 0 49 83 }
+		icon = 30
+		allowed_conversion = {
+			missionism
+			ardent
+			ascendant
+		}
+		allowed_center_conversion = {
+			missionism
+		}
+		country = {
+			discipline = 0.05
+			global_autonomy = -0.05
+		}
+
+		country_as_secondary = {
+			land_forcelimit_modifier = 0.15
+			global_autonomy = -0.05
+		}
+		
+		province = {
+			local_missionary_strength = -0.02
+		}
+		hre_heretic_religion = yes
+		
+		
+		on_convert = {
+			change_religion = terran
+			add_prestige = -100
+			swap_free_idea_group = yes
+	
+			if = {
+				limit = {
+					NOT = {
+						calc_true_if = {
+							all_province = {
+								religion = terran
+								is_reformation_center = yes
+							}
+							amount = 7
+						}
+					}
+				}
+				hidden_effect = {
+					random_owned_province = {
+						limit = {
+							OR = {
+								religion = missionism
+								religion = ardent
+								religion = ascendant
+							}
+							is_in_capital_area = yes
+							is_reformation_center = no
+							development = 10
+							is_island = no
+							NOT = {
+								any_neighbor_province = {
+									is_reformation_center = yes
+								}
+							}
+							NOT = {
+								any_province = {
+									area = PREV
+									is_reformation_center = yes
+									religion = terran
+								}
+							}
+						}
+						change_religion = terran
+						add_reform_center = terran
+					}
+				}
+				custom_tooltip = CENTER_OF_REFORMATION_POSSIBLE
+			}
+			
+			
+			add_country_modifier = {
+				name = "conversion_zeal"
+				duration = 3650
+			}			
+			set_country_flag = reformation_money
+
+		}
+		
+		authority = yes
+		religious_reforms = yes
+		reform_tooltip = INTI_REFORM_TOOLTIP
+		heretic = { EARTHANS }
+		
+		date = 100.1.1
+	
+		
+		
+		
+		will_get_center = {
+			any_owned_province = {
+				OR = {
+					religion = missionism
+					religion = ardent
+					religion = ascendant
+					religion = terran
+				}
+				is_in_capital_area = yes
+				is_reformation_center = no
+
+				NOT = {
+					any_neighbor_province = {
+						is_reformation_center = yes
+					}
+				}
+				NOT = {
+					any_province = {
+						area = PREV
+						is_reformation_center = yes
+						religion = terran
+					}
+				}
+			}
+		}
+		
+		
+		
+	}
+
+	ardent = {
+		color = { 162 0 57 }
+		icon = 31
+		allowed_conversion = {
+			missionism
+			terran
+			ascendant
+		}
+		allowed_center_conversion = {
+			missionism
+		}
+		country = {
+			tolerance_heathen = 2
+			religious_unity = 0.20
+		}
+
+		country_as_secondary = {
+			num_accepted_cultures = 1
+			religious_unity = 0.10
+		}
+		
+		province = {
+			local_missionary_strength = -0.02
+		}
+		hre_heretic_religion = yes
+		
+		
+		on_convert = {
+			change_religion = ardent
+			add_prestige = -100
+			swap_free_idea_group = yes
+	
+			if = {
+				limit = {
+					NOT = {
+						calc_true_if = {
+							all_province = {
+								religion = ardent
+								is_reformation_center = yes
+							}
+							amount = 7
+						}
+					}
+				}
+				hidden_effect = {
+					random_owned_province = {
+						limit = {
+							OR = {
+								religion = terran
+								religion = missionism
+								religion = ardent
+								religion = ascendant
+							}
+							is_in_capital_area = yes
+							is_reformation_center = no
+							development = 10
+							is_island = no
+							NOT = {
+								any_neighbor_province = {
+									is_reformation_center = yes
+								}
+							}
+							NOT = {
+								any_province = {
+									area = PREV
+									is_reformation_center = yes
+									religion = ardent
+								}
+							}
+						}
+						change_religion = ardent
+						add_reform_center = ardent
+					}
+				}
+				custom_tooltip = CENTER_OF_REFORMATION_POSSIBLE
+			}
+			
+			
+			add_country_modifier = {
+				name = "conversion_zeal"
+				duration = 3650
+			}			
+			set_country_flag = reformation_money
+
+		}
+		
+		heretic = { LOYALISTS }
+		
+		date = 100.1.1
+	
+		
+		
+		
+		will_get_center = {
+			any_owned_province = {
+				OR = {
+					religion = missionism
+					religion = ardent
+					religion = ascendant
+					religion = terran
+				}
+				is_in_capital_area = yes
+				is_reformation_center = no
+
+				NOT = {
+					any_neighbor_province = {
+						is_reformation_center = yes
+					}
+				}
+				NOT = {
+					any_province = {
+						area = PREV
+						is_reformation_center = yes
+						religion = terran
+					}
+				}
+			}
+		}
+		
+		authority = yes
+		religious_reforms = yes
+		reform_tooltip = INTI_REFORM_TOOLTIP
+			
+	}
+
+	ascendant = {
+		color = { 75 231 145 }
+		icon = 32
+		allowed_conversion = {
+			missionism
+			ardent
+			terran
+		}
+		allowed_center_conversion = {
+			missionism
+		}
+		country = {
+			development_cost = -0.1
+			build_cost = -0.1
+		}
+
+		country_as_secondary = {
+			development_cost = -0.05
+			build_cost = -0.05
+		}
+		
+		province = {
+			local_missionary_strength = -0.02
+		}
+		hre_heretic_religion = yes
+		
+		
+		on_convert = {
+			change_religion = ascendant
+			add_prestige = -100
+			swap_free_idea_group = yes
+	
+			if = {
+				limit = {
+					
+					NOT = {
+						calc_true_if = {
+							all_province = {
+								religion = ascendant
+								is_reformation_center = yes
+							}
+							amount = 7
+						}
+					}
+				}
+				hidden_effect = {
+					random_owned_province = {
+						limit = {
+							OR = {
+								religion = terran
+								religion = missionism
+								religion = ardent
+								religion = ascendant
+							}
+							is_in_capital_area = yes
+							is_reformation_center = no
+							development = 10
+							is_island = no
+							NOT = {
+								any_neighbor_province = {
+									is_reformation_center = yes
+								}
+							}
+							NOT = {
+								any_province = {
+									area = PREV
+									is_reformation_center = yes
+									religion = ascendant
+								}
+							}
+						}
+						change_religion = ascendant
+						add_reform_center = ascendant
+					}
+				}
+				custom_tooltip = CENTER_OF_REFORMATION_POSSIBLE
+			}
+			
+			
+			add_country_modifier = {
+				name = "conversion_zeal"
+				duration = 3650
+			}			
+			set_country_flag = reformation_money
+
+		}
+		
+		heretic = { ANGELIST }
+		
+		date = 100.1.1
+	
+		
+		
+		
+		will_get_center = {
+			any_owned_province = {
+				OR = {
+					religion = missionism
+					religion = ardent
+					religion = ascendant
+					religion = terran
+				}
+				is_in_capital_area = yes
+				is_reformation_center = no
+
+				NOT = {
+					any_neighbor_province = {
+						is_reformation_center = yes
+					}
+				}
+				NOT = {
+					any_province = {
+						area = PREV
+						is_reformation_center = yes
+						religion = ascendant
+					}
+				}
+			}
+		}
+		
+		authority = yes
+		religious_reforms = yes
+		reform_tooltip = INTI_REFORM_TOOLTIP
+		
+	}
+
+	harmonized_modifier = harmonized_atlanteans
+}
+	
+	
+neo_hellenic = {
+	defender_of_faith = yes
+	
+	center_of_religion = 385 # Mecca
+
+	flags_with_emblem_percentage = 33
+	flag_emblem_index_range = { 97 106 } #Including Star of David / Seal of Suleyman
+	
+	ai_will_propagate_through_trade = yes
+
+	religious_schools = {
+		poseidon = {
+			potential_invite_scholar = {
+				knows_of_scholar_country_capital_trigger = yes
+			}
+
+			# THIS = Nation wanting to invite the scholar, FROM = Nation that follows that school
+			can_invite_scholar = {
+				adm_power = 50
+				if = {
+					limit = {
+						NOT = { religion = olympic }
+					}
+				#	NOT = { piety = -0.5 }
+				}
+				reverse_has_opinion = { who = FROM value = 150 }
+				NOT = { has_country_modifier = poseidon_scholar_modifier }
+				OR = {
+					alliance_with = FROM
+					is_subject_of = FROM
+					overlord_of = FROM
+				}
+				hidden_progressive_opinion_for_scholar_trigger = yes
+			}
+
+			# THIS = Nation wanting to invite the scholar, FORM = Nation that sends scholar
+			on_invite_scholar = {
+				add_adm_power = -50
+				clear_religious_scholar_modifiers_effect = yes
+				custom_tooltip = INVITE_SCHOLAR_COUNTRY_TEXT
+				add_country_modifier = { name = poseidon_scholar_modifier duration = 7300 }
+			}
+
+			# If you don't set this it will expand on_invite_scholar effect which might be super big
+			invite_scholar_modifier_display = poseidon_scholar_modifier
+
+			picture = "GFX_icon_neohellenic_school_poseidon"
+
+			# religion_sub_modifier = no is possible, will hide icon in religious screen
+			global_sailors_modifier = 0.25
+		}
+		
+		demeter = {
+			potential_invite_scholar = {
+				knows_of_scholar_country_capital_trigger = yes
+			}
+
+			# THIS = Nation wanting to invite the scholar, FROM = Nation that follows that school
+			can_invite_scholar = {
+				adm_power = 50
+				if = {
+					limit = {
+						NOT = { religion = olympic }
+					}
+				#	NOT = { piety = -0.5 }
+				}
+				reverse_has_opinion = { who = FROM value = 150 }
+				NOT = { has_country_modifier = demeter_scholar_modifier }
+				OR = {
+					alliance_with = FROM
+					is_subject_of = FROM
+					overlord_of = FROM
+				}
+				hidden_progressive_opinion_for_scholar_trigger = yes
+			}
+
+			# THIS = Nation wanting to invite the scholar, FORM = Nation that sends scholar
+			on_invite_scholar = {
+				add_adm_power = -50
+				clear_religious_scholar_modifiers_effect = yes
+				custom_tooltip = INVITE_SCHOLAR_COUNTRY_TEXT
+				add_country_modifier = { name = demeter_scholar_modifier duration = 7300 }
+			}
+
+			# If you don't set this it will expand on_invite_scholar effect which might be super big
+			invite_scholar_modifier_display = demeter_scholar_modifier
+
+			picture = "GFX_icon_neohellenic_school_demeter"
+
+			# religion_sub_modifier = no is possible, will hide icon in religious screen
+			development_cost = -0.1
+		}
+		
+		apollo = {
+			potential_invite_scholar = {
+				knows_of_scholar_country_capital_trigger = yes
+			}
+
+			# THIS = Nation wanting to invite the scholar, FROM = Nation that follows that school
+			can_invite_scholar = {
+				adm_power = 50
+				if = {
+					limit = {
+						NOT = { religion = olympic }
+					}
+				#	NOT = { piety = -0.5 }
+				}
+				reverse_has_opinion = { who = FROM value = 150 }
+				NOT = { has_country_modifier = apollo_scholar_modifier }
+				OR = {
+					alliance_with = FROM
+					is_subject_of = FROM
+					overlord_of = FROM
+				}
+				hidden_progressive_opinion_for_scholar_trigger = yes
+			}
+
+			# THIS = Nation wanting to invite the scholar, FORM = Nation that sends scholar
+			on_invite_scholar = {
+				add_adm_power = -50
+				clear_religious_scholar_modifiers_effect = yes
+				custom_tooltip = INVITE_SCHOLAR_COUNTRY_TEXT
+				add_country_modifier = { name = apollo_scholar_modifier duration = 7300 }
+			}
+
+			# If you don't set this it will expand on_invite_scholar effect which might be super big
+			invite_scholar_modifier_display = apollo_scholar_modifier
+
+			picture = "GFX_icon_neohellenic_school_apollo"
+
+			# religion_sub_modifier = no is possible, will hide icon in religious screen
+			global_colonial_growth = 20
+		}
+		
+		hermes = {
+			potential_invite_scholar = {
+				knows_of_scholar_country_capital_trigger = yes
+			}
+
+			# THIS = Nation wanting to invite the scholar, FROM = Nation that follows that school
+			can_invite_scholar = {
+				adm_power = 50
+				if = {
+					limit = {
+						NOT = { religion = olympic }
+					}
+				#	NOT = { piety = -0.5 }
+				}
+				reverse_has_opinion = { who = FROM value = 150 }
+				NOT = { has_country_modifier = hermes_scholar_modifier }
+				OR = {
+					alliance_with = FROM
+					is_subject_of = FROM
+					overlord_of = FROM
+				}
+				hidden_progressive_opinion_for_scholar_trigger = yes
+			}
+
+			# THIS = Nation wanting to invite the scholar, FORM = Nation that sends scholar
+			on_invite_scholar = {
+				add_adm_power = -50
+				clear_religious_scholar_modifiers_effect = yes
+				custom_tooltip = INVITE_SCHOLAR_COUNTRY_TEXT
+				add_country_modifier = { name = hermes_scholar_modifier duration = 7300 }
+			}
+
+			# If you don't set this it will expand on_invite_scholar effect which might be super big
+			invite_scholar_modifier_display = hermes_scholar_modifier
+
+			picture = "GFX_icon_neohellenic_school_hermes"
+
+			# religion_sub_modifier = no is possible, will hide icon in religious screen
+			merchants = 1
+		}
+		
+		athena = {
+			potential_invite_scholar = {
+				knows_of_scholar_country_capital_trigger = yes
+			}
+
+			# THIS = Nation wanting to invite the scholar, FROM = Nation that follows that school
+			can_invite_scholar = {
+				adm_power = 50
+				if = {
+					limit = {
+						NOT = { religion = aris }
+					}
+				#	NOT = { piety = -0.5 }
+				}
+				reverse_has_opinion = { who = FROM value = 150 }
+				NOT = { has_country_modifier = athena_scholar_modifier }
+				OR = {
+					alliance_with = FROM
+					is_subject_of = FROM
+					overlord_of = FROM
+				}
+				hidden_progressive_opinion_for_scholar_trigger = yes
+			}
+
+			# THIS = Nation wanting to invite the scholar, FORM = Nation that sends scholar
+			on_invite_scholar = {
+				add_adm_power = -50
+				clear_religious_scholar_modifiers_effect = yes
+				custom_tooltip = INVITE_SCHOLAR_COUNTRY_TEXT
+				add_country_modifier = { name = athena_scholar_modifier duration = 7300 }
+			}
+
+			# If you don't set this it will expand on_invite_scholar effect which might be super big
+			invite_scholar_modifier_display = athena_scholar_modifier
+
+			picture = "GFX_icon_neohellenic_school_athena"
+
+			# religion_sub_modifier = no is possible, will hide icon in religious screen
+			adm_tech_cost_modifier = -0.05
+		}
+		
+		hephaestus = {
+			potential_invite_scholar = {
+				knows_of_scholar_country_capital_trigger = yes
+			}
+
+			# THIS = Nation wanting to invite the scholar, FROM = Nation that follows that school
+			can_invite_scholar = {
+				adm_power = 50
+				if = {
+					limit = {
+						NOT = { religion = aris }
+					}
+				#	NOT = { piety = -0.5 }
+				}
+				reverse_has_opinion = { who = FROM value = 150 }
+				NOT = { has_country_modifier = hephaestus_scholar_modifier }
+				OR = {
+					alliance_with = FROM
+					is_subject_of = FROM
+					overlord_of = FROM
+				}
+				hidden_progressive_opinion_for_scholar_trigger = yes
+			}
+
+			# THIS = Nation wanting to invite the scholar, FORM = Nation that sends scholar
+			on_invite_scholar = {
+				add_adm_power = -50
+				clear_religious_scholar_modifiers_effect = yes
+				custom_tooltip = INVITE_SCHOLAR_COUNTRY_TEXT
+				add_country_modifier = { name = hephaestus_scholar_modifier duration = 7300 }
+			}
+
+			# If you don't set this it will expand on_invite_scholar effect which might be super big
+			invite_scholar_modifier_display = hephaestus_scholar_modifier
+
+			picture = "GFX_icon_neohellenic_school_hephaestus"
+
+			# religion_sub_modifier = no is possible, will hide icon in religious screen
+			development_cost = -0.1
+		}
+		
+		artemis = {
+			potential_invite_scholar = {
+				knows_of_scholar_country_capital_trigger = yes
+			}
+
+			# THIS = Nation wanting to invite the scholar, FROM = Nation that follows that school
+			can_invite_scholar = {
+				adm_power = 50
+				if = {
+					limit = {
+						NOT = { religion = aris }
+					}
+				#	NOT = { piety = -0.5 }
+				}
+				reverse_has_opinion = { who = FROM value = 150 }
+				NOT = { has_country_modifier = artemis_scholar_modifier }
+				OR = {
+					alliance_with = FROM
+					is_subject_of = FROM
+					overlord_of = FROM
+				}
+				hidden_progressive_opinion_for_scholar_trigger = yes
+			}
+
+			# THIS = Nation wanting to invite the scholar, FORM = Nation that sends scholar
+			on_invite_scholar = {
+				add_adm_power = -50
+				clear_religious_scholar_modifiers_effect = yes
+				custom_tooltip = INVITE_SCHOLAR_COUNTRY_TEXT
+				add_country_modifier = { name = artemis_scholar_modifier duration = 7300 }
+			}
+
+			# If you don't set this it will expand on_invite_scholar effect which might be super big
+			invite_scholar_modifier_display = artemis_scholar_modifier
+
+			picture = "GFX_icon_neohellenic_school_artemis"
+
+			# religion_sub_modifier = no is possible, will hide icon in religious screen
+			leader_land_fire = 1
+		}
+		
+		hera = {
+			potential_invite_scholar = {
+				knows_of_scholar_country_capital_trigger = yes
+			}
+
+			# THIS = Nation wanting to invite the scholar, FROM = Nation that follows that school
+			can_invite_scholar = {
+				adm_power = 50
+				if = {
+					limit = {
+						NOT = { religion = aris }
+					}
+				#	NOT = { piety = -0.5 }
+				}
+				reverse_has_opinion = { who = FROM value = 150 }
+				NOT = { has_country_modifier = hera_scholar_modifier }
+				OR = {
+					alliance_with = FROM
+					is_subject_of = FROM
+					overlord_of = FROM
+				}
+				hidden_progressive_opinion_for_scholar_trigger = yes
+			}
+
+			# THIS = Nation wanting to invite the scholar, FORM = Nation that sends scholar
+			on_invite_scholar = {
+				add_adm_power = -50
+				clear_religious_scholar_modifiers_effect = yes
+				custom_tooltip = INVITE_SCHOLAR_COUNTRY_TEXT
+				add_country_modifier = { name = hera_scholar_modifier duration = 7300 }
+			}
+
+			# If you don't set this it will expand on_invite_scholar effect which might be super big
+			invite_scholar_modifier_display = hera_scholar_modifier
+
+			picture = "GFX_icon_neohellenic_school_hera"
+
+			# religion_sub_modifier = no is possible, will hide icon in religious screen
+			prestige = 1
+		}
+	}
+	
+	
+	
+	olympic = {
+		color = { 166 156 236 }
+		icon = 33
+		allowed_conversion = {
+			aris
+		}
+		country = {
+			development_cost = -0.10
+			build_cost = -0.10		
+		}
+		country_as_secondary = {
+			development_cost = -0.05
+			global_tax_modifier = 0.05
+		}
+		province = {
+			allowed_num_of_buildings = 1
+		}
+		
+		heretic = { OLD_CHRISTIAN }
+		
+	}
+	aris = {
+		color = { 183 76 55 }
+		icon = 34
+		allowed_conversion = {
+			olympic
+		}
+		country = {
+			global_trade_power = 0.1
+			local_colonist_placement_chance = 0.1
+		}
+		country_as_secondary = {
+			local_colonial_growth = 20
+		}
+		province = {
+			trade_goods_size = 0.5
+		}
+		
+		heretic = { OLD_CHRISTIAN }
+		
+	}
+	harmonized_modifier = harmonized_olympians
+	
+	crusade_name = HOLY_WAR
+}
+
+kallipolitan = {
+	cult_of_the_empire = {
+		color = { 152 63 227 }
+		icon = 4
+		country = {
+			development_cost = -0.1
+			innovativeness_gain = 0.5
+		}
+		country_as_secondary = {
+			idea_cost = -0.1
+		}
+		province = {
+			local_missionary_strength = -0.02
+		}
+		
+		
+		heretic = { REPUBLICAN MONARCHIST }
+		
+		uses_karma = yes		# Uses patriarch authority
+		misguided_heretic = yes		# Other christians hate them less
+		
+		
+	}
+
+	harmonized_modifier = harmonized_neoplatonism
+}
+
+austroasiatic = {
+	tho_than = {
+		color = { 197 11 120 }
+		icon = 35
+		country = {
+			institution_spread_from_true_faith = 0.1
+			stability_cost_modifier = -0.1
+		}
+		country_as_secondary = {
+			global_unrest = -2
+		}
+		province = {
+			local_missionary_strength = 0.01
+		}
+
+		personal_deity = yes
+
+		heretic = { THO_SAI }
+	}
+	ngu_zan = {
+		color = { 125 25 255 }
+		icon = 36
+		country = {
+			naval_maintenance_modifier = -0.1
+			sailor_maintenance_modifer = -0.1
+		}
+		country_as_secondary = {
+			capture_ship_chance = 0.1
+		}
+		province = {
+			local_missionary_strength = 0.01
+		}
+
+		personal_deity = yes
+
+		heretic = { THO_SAI }
+	}
+	dao_bua = {
+		color = { 75 225 165 }
+		icon = 37
+		country = {
+			land_morale = 0.1
+			loot_amount = 0.2
+		}
+		country_as_secondary = {
+			female_advisor_chance = 0.2
+		}
+		province = {
+			local_missionary_strength = 0.01
+		}
+
+		personal_deity = yes
+
+		heretic = { THO_SAI }
+	}
+	sasanea_yang = {
+		color = { 35 225 115 }
+		icon = 38
+		country = {
+			enemy_core_creation = 0.2
+			build_cost = -0.1
+		}
+		country_as_secondary = {
+			heir_chance = 0.5
+		}
+		province = {
+			local_missionary_strength = 0.01
+		}
+
+		heretic = { THO_SAI }
+	}
+	sarnaism = {
+		color = { 220 99 11 }
+		icon = 39
+		country = {
+			land_morale = 0.1
+			naval_maintenance_modifier = -0.1
+		}
+		country_as_secondary = {
+			global_trade_power = 0.1
+		}
+		province = {
+			local_missionary_strength = 0.01
+		}
+
+		heretic = { THO_SAI }
+	}
+	keramat_penunggu = {
+		color = { 142 11 11 }
+		icon = 40
+		country = {
+			stability_cost_modifier = -0.1
+			production_efficiency = 0.05
+		}
+		country_as_secondary = {
+			development_cost = -0.1
+		}
+		province = {
+			local_missionary_strength = 0.01
+		}
+
+		heretic = { THO_SAI }
+	}
+
+	harmonized_modifier = harmonized_austroasiatics
+}
