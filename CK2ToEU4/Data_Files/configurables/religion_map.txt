@@ -104,15 +104,9 @@ link = { eu4 = hinduism ck2 = hindu }
 link = { eu4 = jain ck2 = jain ck2 = ajivika }
 link = { eu4 = confucianism ck2 = taoist ck2 = confucianism }
 
-# ---- SUPPORTED MODS -----
+# Mars Universalis
+link = { eu4 = sasanea_yang ck2 = bon ck2 = bon_reformed }
+link = { eu4 = neo_kemetic ck2 = tengri_pagan ck2 = tengri_pagan_reformed }
+link = { eu4 = olympic ck2 = hellenic_pagan ck2 = hellenic_pagan_reformed } 
+link = { eu4 = sea_god ck2 = norse_pagan ck2 = norse_pagan_reformed }
 
-# Sons of Vinland
-link = { eu4 = totemism ck2 = inuit_pagan ck2 = inuit_pagan_reformed ck2 = algic_pagan ck2 = algic_pagan_reformed }
-
-# When The World Stopped Making Sense / Historical Immersion Project / Rise of Islam
-# (These are CK2 religions that do not fit with any of the vanilla EU4 religions)
-
-link = { eu4 = arianism ck2 = adoptionism ck2 = binitarian ck2 = pneumatomachians ck2 = arian ck2 = adoptionist ck2 = montanist }
-link = { eu4 = judaism ck2 = tzadikite } #eu4 = jewish ???
-link = { eu4 = samaritan ck2 = bosporan_faith } #eu4 = samaritan_faith ???
-link = { eu4 = hindu ck2 = carvaka ck2 = mimamsa ck2 = tantric ck2 = bhakti ck2 = sramanic } #eu4 = hinduism ???
